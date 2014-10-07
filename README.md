@@ -14,6 +14,9 @@ You'll need do the followeing 3 steps.
 1. Type `update slack channels YOUR_SLACK_API_TOKEN` with Alfred. [Get your API token](https://api.slack.com/) on Slack API Documentation(Authentication section), if you don't know Your API Token
 1. Done!! :) you can use the workflow. type `slack`.
 
+if you have some update for channels(e.g. change a channel name, add/remove channel), Type `update slack channels YOUR_SLACK_API_TOKEN` again. because this workflow caches Channels list.
+
 ## TODO
 
 - Brush up AppleScript code to switch channels
+- Automate to update caching channels list
