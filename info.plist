@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.akira.slack-channels</string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>367E6AC1-66DA-4253-AC94-1A72255CBA1D</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>06AB1720-1342-424B-8720-5CF35EE85A62</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>9416C97E-E22E-4F90-A8EE-027D61EBED47</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>6517F06C-BFDD-4993-A641-3F3928552C34</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>C0EBD92D-809F-4AF1-856C-AB26D63986C2</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>EB297770-7F13-4838-9BEF-E6FDBD1DF318</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>CD727746-F85C-4DAA-AA6B-C0DA811EA144</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>C0EBD92D-809F-4AF1-856C-AB26D63986C2</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Akira Hamada</string>
+	<key>description</key>
+	<string>open Slack Channel</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Slack Channels</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>36</integer>
+				<key>keyword</key>
+				<string>slack</string>
+				<key>runningsubtext</key>
+				<string>Fetching Channels...</string>
+				<key>script</key>
+				<string>ruby fetch_channels.rb '{query}'</string>
+				<key>subtext</key>
+				<string>Flack CHANNEL_NAME</string>
+				<key>title</key>
+				<string>Slack CHANNEL_NAME</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>367E6AC1-66DA-4253-AC94-1A72255CBA1D</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>script</key>
+				<string>tell application "Slack"	activate
+	tell application "System Events"
+		set original to (the clipboard as text)
+		set the clipboard to ("/open {query}" as text)
+
+		keystroke tab
+		keystroke "a" using command down
+		keystroke "v" using command down
+		keystroke return
+
+		delay 1.0
+		set the clipboard to (original as text)
+	end tellend tell</string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.script</string>
+			<key>uid</key>
+			<string>06AB1720-1342-424B-8720-5CF35EE85A62</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>36</integer>
+				<key>script</key>
+				<string>ruby update_slack_channels.rb "{query}"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>C0EBD92D-809F-4AF1-856C-AB26D63986C2</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>update slack channels</string>
+				<key>subtext</key>
+				<string>Update Slack Channels Cache File</string>
+				<key>text</key>
+				<string>Update Slack Channels API_TOKEN</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>CD727746-F85C-4DAA-AA6B-C0DA811EA144</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>Slack Channels List</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>EB297770-7F13-4838-9BEF-E6FDBD1DF318</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>get slack api token</string>
+				<key>subtext</key>
+				<string>Copy Your Token on Authentication Section</string>
+				<key>text</key>
+				<string>Get Slack Api Token</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>9416C97E-E22E-4F90-A8EE-027D61EBED47</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>plusspaces</key>
+				<false/>
+				<key>url</key>
+				<string>https://api.slack.com/</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>6517F06C-BFDD-4993-A641-3F3928552C34</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>06AB1720-1342-424B-8720-5CF35EE85A62</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>367E6AC1-66DA-4253-AC94-1A72255CBA1D</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>6517F06C-BFDD-4993-A641-3F3928552C34</key>
+		<dict>
+			<key>ypos</key>
+			<real>280</real>
+		</dict>
+		<key>9416C97E-E22E-4F90-A8EE-027D61EBED47</key>
+		<dict>
+			<key>ypos</key>
+			<real>280</real>
+		</dict>
+		<key>C0EBD92D-809F-4AF1-856C-AB26D63986C2</key>
+		<dict>
+			<key>ypos</key>
+			<real>140</real>
+		</dict>
+		<key>CD727746-F85C-4DAA-AA6B-C0DA811EA144</key>
+		<dict>
+			<key>ypos</key>
+			<real>140</real>
+		</dict>
+		<key>EB297770-7F13-4838-9BEF-E6FDBD1DF318</key>
+		<dict>
+			<key>ypos</key>
+			<real>140</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string></string>
+</dict>
+</plist>
