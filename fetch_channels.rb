@@ -5,6 +5,6 @@ channels = channels.select { |channel| channel['name'].include?(ARGV[0]) } unles
 
 puts '<?xml version="1.0"?><items>'
 channels.each do |channel|
-  puts "<item uid=\"#{channel['name']}\" arg=\"#{channel['name']}\" valid='YES' autocomplete=\"#{channel['name']}\" type='file'><title>#{channel['name']}</title><subtitle>Slack channel</subtitle><icon>icon.png</icon></item>"
+  puts "<item uid=\"#{channel['name']}\" arg=\"#{channel['name']}\" valid='YES' autocomplete=\"#{channel['name']}\" type='file'><title>#{channel['name']}</title><subtitle>#{channel['topic']['value']}</subtitle><icon>icon.png</icon></item>"
 end
 puts '</items>'
