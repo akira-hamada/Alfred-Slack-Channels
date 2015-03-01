@@ -85,7 +85,7 @@
 				<key>script</key>
 				<string>ruby fetch_channels.rb '{query}'</string>
 				<key>subtext</key>
-				<string>Flack CHANNEL_NAME</string>
+				<string>Slack CHANNEL_NAME</string>
 				<key>title</key>
 				<string>Slack CHANNEL_NAME</string>
 				<key>type</key>
