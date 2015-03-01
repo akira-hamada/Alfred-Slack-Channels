@@ -72,6 +72,14 @@
 				<integer>36</integer>
 				<key>keyword</key>
 				<string>slack</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>2</integer>
 				<key>runningsubtext</key>
 				<string>Fetching Channels...</string>
 				<key>script</key>
