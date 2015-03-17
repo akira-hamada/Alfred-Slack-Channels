@@ -1,6 +1,7 @@
 require 'json'
 
 channels = JSON.parse(File.open('channels.cache').read)['channels']
+channels += JSON.parse(File.open('users.cache').read)['members'].each{|m| m['name'] = '@' + m['name']}
 channels = channels.select { |channel| channel['name'].include?(ARGV[0]) } unless ARGV[0] == ''
 
 puts '<?xml version="1.0"?><items>'

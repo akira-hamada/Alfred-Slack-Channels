@@ -19,6 +19,17 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>6563FD46-DBCD-4BC6-A7F0-2887D29A87D7</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D52E2A2F-E60E-4109-A5F6-88D9934ADE26</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>9416C97E-E22E-4F90-A8EE-027D61EBED47</key>
 		<array>
 			<dict>
@@ -52,15 +63,26 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>D52E2A2F-E60E-4109-A5F6-88D9934ADE26</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>FF51BF57-6936-4D4F-8D5D-D2360715AB88</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 	</dict>
 	<key>createdby</key>
 	<string>Akira Hamada</string>
 	<key>description</key>
-	<string>open Slack Channel</string>
+	<string>open Slack Channel or User</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>Slack Channels</string>
+	<string>Slack Channels and Users</string>
 	<key>objects</key>
 	<array>
 		<dict>
@@ -79,7 +101,7 @@
 				<key>queuedelaymode</key>
 				<integer>0</integer>
 				<key>queuemode</key>
-				<integer>2</integer>
+				<integer>1</integer>
 				<key>runningsubtext</key>
 				<string>Fetching Channels...</string>
 				<key>script</key>
@@ -109,7 +131,13 @@
 				<string>tell application "Slack"	activate
 	tell application "System Events"
 		set original to (the clipboard as text)
-		set the clipboard to ("/open {query}" as text)
+		set atchar to "@"
+		set qry to "{query}"
+		if qry contains atchar then
+			set the clipboard to ("/msg {query}" as text)
+		else
+			set the clipboard to ("/open {query}" as text)
+		end if
 
 		keystroke tab
 		keystroke "a" using command down
@@ -230,6 +258,69 @@
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>update slack users</string>
+				<key>subtext</key>
+				<string>Update Slack Users Cache File</string>
+				<key>text</key>
+				<string>Update Slack Users API_TOKEN</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>6563FD46-DBCD-4BC6-A7F0-2887D29A87D7</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>Slack Users List</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>FF51BF57-6936-4D4F-8D5D-D2360715AB88</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>36</integer>
+				<key>script</key>
+				<string>ruby update_slack_users.rb "{query}"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>D52E2A2F-E60E-4109-A5F6-88D9934ADE26</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
@@ -250,6 +341,11 @@
 			<key>ypos</key>
 			<real>280</real>
 		</dict>
+		<key>6563FD46-DBCD-4BC6-A7F0-2887D29A87D7</key>
+		<dict>
+			<key>ypos</key>
+			<real>410</real>
+		</dict>
 		<key>9416C97E-E22E-4F90-A8EE-027D61EBED47</key>
 		<dict>
 			<key>ypos</key>
@@ -265,10 +361,20 @@
 			<key>ypos</key>
 			<real>140</real>
 		</dict>
+		<key>D52E2A2F-E60E-4109-A5F6-88D9934ADE26</key>
+		<dict>
+			<key>ypos</key>
+			<real>410</real>
+		</dict>
 		<key>EB297770-7F13-4838-9BEF-E6FDBD1DF318</key>
 		<dict>
 			<key>ypos</key>
 			<real>140</real>
+		</dict>
+		<key>FF51BF57-6936-4D4F-8D5D-D2360715AB88</key>
+		<dict>
+			<key>ypos</key>
+			<real>410</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>
